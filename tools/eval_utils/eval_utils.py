@@ -4,7 +4,8 @@ import time
 import numpy as np
 import torch
 import tqdm
-
+import os, sys
+sys.path.append(os.path.abspath(os.path.join('..')))
 from pcdet.models import load_data_to_gpu
 from pcdet.utils import common_utils
 

@@ -5,7 +5,8 @@ from pathlib import Path
 import mayavi.mlab as mlab
 import numpy as np
 import torch
-
+import os, sys
+sys.path.append(os.path.abspath(".."))
 from pcdet.config import cfg, cfg_from_yaml_file
 from pcdet.datasets import DatasetTemplate
 from pcdet.models import build_network, load_data_to_gpu
@@ -78,7 +79,7 @@ def main():
         root_path=Path(args.data_path), ext=args.ext, logger=logger
     )
     logger.info(f'Total number of samples: \t{len(demo_dataset)}')
-
+    
     model = build_network(model_cfg=cfg.MODEL, num_class=len(cfg.CLASS_NAMES), dataset=demo_dataset)
     model.load_params_from_file(filename=args.ckpt, logger=logger, to_cpu=True)
     model.cuda()
